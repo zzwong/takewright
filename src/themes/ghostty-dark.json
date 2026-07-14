@@ -1,0 +1,15 @@
+{
+  "name": "Studio Dark",
+  "background": "#11131a",
+  "foreground": "#eef1f8",
+  "cursor": "#eef1f8",
+  "selection": "#30384b",
+  "black": "#11131a",
+  "red": "#ff6b6b",
+  "green": "#69db7c",
+  "yellow": "#ffd43b",
+  "blue": "#74c0fc",
+  "magenta": "#b197fc",
+  "cyan": "#66d9e8",
+  "white": "#e9ecef"
+}

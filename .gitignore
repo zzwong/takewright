@@ -1,0 +1,24 @@
+node_modules/
+.DS_Store
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+coverage/
+dist/
+.cache/
+*.tsbuildinfo
+*.pem
+*.key
+output/**
+!output/.gitkeep
+public/recordings/**
+!public/recordings/.gitkeep
+.remotion/
+*.log
+
+# TypeScript is the source of truth. These can be emitted by ad-hoc compiler runs.
+src/**/*.js
+scripts/**/*.js
+remotion.config.js

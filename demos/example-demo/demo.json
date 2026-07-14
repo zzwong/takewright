@@ -1,0 +1,13 @@
+{
+  "id": "example-demo",
+  "title": "Ship terminal stories, from code",
+  "subtitle": "Deterministic capture. Programmatic composition.",
+  "description": "A network-free example of the autonomous terminal demo pipeline.",
+  "recording": {"tape": "demo.tape", "width": 1440, "height": 900},
+  "composition": {"theme": "ghostty-dark", "background": "gradient", "terminalScale": 0.86, "terminalPositionY": 0.04, "showWindowChrome": true, "cornerRadius": 18, "shadow": true},
+  "timing": {"introFrames": 36, "outroFrames": 36},
+  "formats": ["landscape", "portrait", "square", "social-portrait"],
+  "captions": "captions.json",
+  "zooms": [{"startFrame": 105, "endFrame": 175, "scale": 1.06, "x": 0.16, "y": 0.16}],
+  "callouts": [{"startFrame": 205, "endFrame": 265, "text": "Configuration is validated before every render", "position": "bottom"}]
+}

@@ -1,0 +1,58 @@
+name: Takewright smoke test
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: smoke-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+        with:
+          version: 11.10.0
+          run_install: false
+      - name: Install Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install VHS
+        uses: charmbracelet/vhs-action@59641cdc7fadf3978db65eb8c6937ea2752f4ec3 # v2
+        with:
+          version: v0.11.0
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Check source
+        run: pnpm check
+      - name: Audit production dependencies
+        run: pnpm audit --prod --audit-level high
+      - name: Record deterministic fixture
+        run: vhs demos/example-demo/demo.tape
+      - name: Validate example
+        run: pnpm demo:validate example-demo --format landscape
+      - name: Render low-resolution smoke video
+        run: pnpm demo:render example-demo --format landscape --skip-recording --smoke
+      - name: Render low-resolution smoke GIF
+        run: pnpm demo:render example-demo --format landscape --output gif --skip-recording --smoke
+      - name: Upload smoke media
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: example-demo-smoke
+          path: |
+            output/example-demo/example-demo-landscape.mp4
+            output/example-demo/example-demo-landscape.gif
+          if-no-files-found: error

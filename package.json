@@ -1,0 +1,52 @@
+{
+  "name": "takewright",
+  "version": "0.1.0",
+  "description": "Script, capture, and render repeatable product demos.",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@11.10.0",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=11"
+  },
+  "keywords": [
+    "terminal",
+    "demo",
+    "video",
+    "vhs",
+    "remotion",
+    "ffmpeg",
+    "automation"
+  ],
+  "scripts": {
+    "demo:new": "tsx scripts/new-demo.ts",
+    "demo:render": "tsx scripts/render-demo.ts",
+    "demo:inspect": "tsx scripts/inspect-demo.ts",
+    "demo:validate": "tsx scripts/validate-demo.ts",
+    "demo:doctor": "tsx scripts/doctor.ts",
+    "demo:smoke": "tsx scripts/render-demo.ts example-demo --format landscape --smoke",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --max-warnings=0",
+    "check": "pnpm typecheck && pnpm lint"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.489",
+    "@remotion/renderer": "4.0.489",
+    "execa": "^9.6.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "remotion": "4.0.489",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.0.0"
+  }
+}

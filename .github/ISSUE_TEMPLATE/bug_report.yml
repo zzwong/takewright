@@ -1,0 +1,33 @@
+name: Bug report
+description: Report a reproducible problem with Takewright
+title: "bug: "
+body:
+  - type: markdown
+    attributes:
+      value: Do not include credentials, private recordings, or confidential terminal output.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Problem
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Provide the smallest safe demo configuration or steps that reproduce the issue.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include OS, Node.js, pnpm, VHS, and FFmpeg versions or sanitized demo:doctor output.
+    validations:
+      required: true
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Add sanitized logs, media metadata, or screenshots when useful.

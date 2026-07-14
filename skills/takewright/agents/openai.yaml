@@ -1,0 +1,4 @@
+interface:
+  display_name: "Takewright"
+  short_description: "Create polished terminal demos for Slack"
+  default_prompt: "Use $takewright to create and refine a compact landscape terminal demo for Slack."
