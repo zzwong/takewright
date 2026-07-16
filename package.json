@@ -26,9 +26,10 @@
     "demo:validate": "tsx scripts/validate-demo.ts",
     "demo:doctor": "tsx scripts/doctor.ts",
     "demo:smoke": "tsx scripts/render-demo.ts example-demo --format landscape --smoke",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --max-warnings=0",
-    "check": "pnpm typecheck && pnpm lint"
+    "check": "pnpm typecheck && pnpm lint && pnpm test"
   },
   "dependencies": {
     "@remotion/cli": "4.0.489",
@@ -47,6 +48,7 @@
     "eslint": "^9.0.0",
     "tsx": "^4.20.0",
     "typescript": "^5.9.0",
-    "typescript-eslint": "^8.0.0"
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^4.1.10"
   }
 }

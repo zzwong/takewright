@@ -94,7 +94,7 @@ export const formatFromArgs = (args: string[], defaults: FormatName[]): {formats
   const requested = index >= 0 ? args[index + 1] : undefined;
   const outputIndex = args.indexOf('--output');
   const requestedOutput = outputIndex >= 0 ? args[outputIndex + 1] : undefined;
-  if (requested && !formatNames.includes(requested as FormatName)) throw new CliError(`Unknown format "${requested}".`, `Choose one of: ${formatNames.join(', ')}.`);
+  if (index >= 0 && !formatNames.includes(requested as FormatName)) throw new CliError(`Unknown format "${requested ?? ''}".`, `Choose one of: ${formatNames.join(', ')}.`);
   if (outputIndex >= 0 && !outputTypes.includes(requestedOutput as OutputType)) throw new CliError(`Unknown output type "${requestedOutput ?? ''}".`, `Choose one of: ${outputTypes.join(', ')}.`);
   if (all && requested) throw new CliError('Use either --all or --format, not both.');
   return {formats: all ? [...formatNames] : requested ? [requested as FormatName] : defaults.length ? [defaults[0]!] : ['landscape'], outputType: (requestedOutput as OutputType | undefined) ?? 'mp4', skipRecording, smoke};
