@@ -1,0 +1,5 @@
+[
+  {"startFrame": 45, "endFrame": 150, "text": "Doctor verifies every dependency before you record."},
+  {"startFrame": 185, "endFrame": 300, "text": "One command records, validates, and renders the video."},
+  {"startFrame": 340, "endFrame": 450, "text": "Schemas and probes catch problems before publishing."}
+]

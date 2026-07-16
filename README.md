@@ -2,6 +2,10 @@
 
 Takewright turns deterministic terminal scripts into polished, multi-format videos without a GUI timeline. VHS records a controlled terminal, Remotion supplies the stage and motion, and FFmpeg/FFprobe validate and inspect the media. Every editable source is code, JSON, or Markdown.
 
+![Takewright rendering itself](docs/media/takewright-demo.gif)
+
+The GIF above is Takewright's own output: the [takewright-demo](demos/takewright-demo/) tape replays the real CLI transcript and the pipeline records, composes, and renders it. Reproduce it with `pnpm demo:render takewright-demo --format landscape --output gif`.
+
 The project is intentionally marked `private` in `package.json` to prevent accidental npm publication. That does not restrict cloning, modification, or redistribution under the project license.
 
 ## Prerequisites
@@ -109,7 +113,7 @@ Composition primitives live under `src/`: CSS/SVG-style backgrounds, the termina
 
 ## CI
 
-`.github/workflows/smoke.yml` uses read-only permissions and commit-pinned actions. It installs Node, pnpm, FFmpeg, and VHS; caches pnpm's store; checks types and lint; audits production dependencies; records and validates the example; renders low-resolution MP4 and GIF smoke artifacts; and uploads them. Full-resolution variants are intentionally not rendered on every commit.
+`.github/workflows/smoke.yml` uses read-only permissions and commit-pinned actions. It installs Node, pnpm, FFmpeg, and VHS; caches pnpm's store; checks types, lint, and unit tests; audits production dependencies; records and validates the example; renders low-resolution MP4 and GIF smoke artifacts; and uploads them. Full-resolution variants are intentionally not rendered on every commit.
 
 ## Optional real terminal capture
 

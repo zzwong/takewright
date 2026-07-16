@@ -1,0 +1,37 @@
+{
+  "id": "takewright-demo",
+  "title": "Takewright renders Takewright",
+  "subtitle": "Deterministic terminal demos, from code to video.",
+  "description": "Dogfood demo: the Takewright CLI recording, validating, and rendering itself.",
+  "recording": {
+    "tape": "demo.tape",
+    "width": 1200,
+    "height": 700
+  },
+  "composition": {
+    "theme": "ghostty-dark",
+    "background": "gradient",
+    "terminalScale": 0.72,
+    "terminalPositionY": 0.05,
+    "showWindowChrome": true,
+    "cornerRadius": 18,
+    "shadow": true
+  },
+  "timing": {
+    "introFrames": 30,
+    "outroFrames": 30
+  },
+  "formats": [
+    "landscape"
+  ],
+  "captions": "captions.json",
+  "zooms": [],
+  "callouts": [
+    {
+      "startFrame": 300,
+      "endFrame": 380,
+      "text": "This video was rendered by the pipeline it shows",
+      "position": "top"
+    }
+  ]
+}
