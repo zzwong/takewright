@@ -11,6 +11,30 @@ const executable = async (name: string, args: string[], fix: string): Promise<Ch
   return result.exitCode === 0 ? {name, ok: true, detail} : {name, ok: false, detail: 'not executable', fix};
 };
 
+// Known install locations first, then fontconfig as the authoritative Linux fallback.
+const fontCheck = async (): Promise<Check> => {
+  const home = process.env.HOME ?? '';
+  const candidates = process.platform === 'darwin'
+    ? [path.join(home, 'Library/Fonts/JetBrainsMono-Regular.ttf'), '/Library/Fonts/JetBrainsMono-Regular.ttf']
+    : [
+        '/usr/share/fonts/truetype/jetbrains-mono/JetBrainsMono-Regular.ttf',
+        '/usr/share/fonts/opentype/jetbrains-mono/JetBrainsMono-Regular.ttf',
+        path.join(home, '.local/share/fonts/JetBrainsMono-Regular.ttf'),
+        path.join(home, '.fonts/JetBrainsMono-Regular.ttf'),
+      ];
+  const found = (await Promise.all(candidates.map(async (candidate) => (await exists(candidate)) ? candidate : null))).find(Boolean);
+  if (found) return {name: 'JetBrains Mono font', ok: true, detail: found};
+  if (process.platform !== 'darwin') {
+    const fc = await run('fontconfig check', 'fc-list', [':family=JetBrains Mono', 'file'], {reject: false});
+    const line = String(fc.stdout ?? '').split('\n').find((entry) => entry.trim());
+    if (fc.exitCode === 0 && line) return {name: 'JetBrains Mono font', ok: true, detail: line.replace(/:\s*$/, '').trim()};
+  }
+  return {
+    name: 'JetBrains Mono font', ok: false, detail: 'font not found',
+    fix: process.platform === 'darwin' ? 'Install with "brew install --cask font-jetbrains-mono".' : 'Install JetBrains Mono or use the official VHS action, which provides it.',
+  };
+};
+
 const main = async () => {
   const [nodeCheck, pnpmCheck, vhsCheck, ffmpegCheck, ffprobeCheck] = await Promise.all([
     executable('node', ['--version'], 'Install Node.js 22 or newer.'),
@@ -31,9 +55,7 @@ const main = async () => {
   const out = path.join(root, 'output', '.doctor-write-test');
   try { await mkdir(path.dirname(out), {recursive: true}); await writeFile(out, 'ok'); await rm(out); checks.push({name: 'output directory', ok: true, detail: 'writable'}); }
   catch { checks.push({name: 'output directory', ok: false, detail: 'not writable', fix: 'Grant write permission to output/.'}); }
-  const fonts = process.platform === 'darwin' ? [path.join(process.env.HOME ?? '', 'Library/Fonts/JetBrainsMono-Regular.ttf')] : ['/usr/share/fonts/truetype/jetbrains-mono/JetBrainsMono-Regular.ttf', '/usr/share/fonts/opentype/jetbrains-mono/JetBrainsMono-Regular.ttf'];
-  const font = (await Promise.all(fonts.map(async (candidate) => (await exists(candidate)) ? candidate : null))).find(Boolean);
-  checks.push(font ? {name: 'JetBrains Mono font', ok: true, detail: font} : {name: 'JetBrains Mono font', ok: false, detail: 'font not found', fix: process.platform === 'darwin' ? 'Install with "brew install --cask font-jetbrains-mono".' : 'Install JetBrains Mono or use the official VHS action, which provides it.'});
+  checks.push(await fontCheck());
   const doctorRecording = path.join(root, 'public', 'recordings', '.doctor.mp4');
   const doctorOutput = path.join(root, 'output', '.doctor.png');
   try {
