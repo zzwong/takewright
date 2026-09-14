@@ -36,7 +36,7 @@
     "@remotion/renderer": "4.0.489",
     "execa": "^10.0.1",
     "react": "^19.2.8",
-    "react-dom": "^19.1.0",
+    "react-dom": "^19.2.8",
     "remotion": "4.0.489",
     "zod": "4.5.2"
   },
@@ -44,7 +44,7 @@
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.1.2",
     "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.0.0",
+    "@types/react-dom": "^19.2.5",
     "eslint": "^10.7.0",
     "tsx": "^4.20.0",
     "typescript": "^5.9.0",
