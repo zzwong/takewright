@@ -27,8 +27,8 @@ importers:
         specifier: 4.0.489
         version: 4.0.489(react-dom@19.2.7(react@19.2.8))(react@19.2.8)
       zod:
-        specifier: 4.3.6
-        version: 4.3.6
+        specifier: 4.5.2
+        version: 4.5.2
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -1895,6 +1895,9 @@ packages:
   zod@4.3.6:
     resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
+  zod@4.5.2:
+    resolution: {integrity: sha512-XkYXCol10+ba/6F/cueWV+TezUeOqXW0hdeJt5CdXjTYeAgAQg5N03RQdJ80mhfFE72+pblvYMW4wy2Qp4Qbrg==}
+
 snapshots:
 
   '@babel/helper-string-parser@7.29.7': {}
@@ -3630,3 +3633,5 @@ snapshots:
   yoctocolors@2.2.0: {}
 
   zod@4.3.6: {}
+
+  zod@4.5.2: {}
