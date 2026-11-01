@@ -32,7 +32,7 @@
     "check": "pnpm typecheck && pnpm lint && pnpm test"
   },
   "dependencies": {
-    "@remotion/cli": "4.0.529",
+    "@remotion/cli": "4.0.539",
     "@remotion/renderer": "4.0.529",
     "execa": "^10.0.1",
     "react": "^19.3.0",
